@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/hf-api/(.*)",
+      "destination": "https://router.huggingface.co/$1"
+    },
+    {
+      "source": "/news-api/(.*)",
+      "destination": "https://newsapi.org/v2/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
