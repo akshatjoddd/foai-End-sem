@@ -39,9 +39,9 @@ export function useNews() {
       const apiKey = import.meta.env.VITE_NEWS_API_KEY;
       let url = '';
       if (category === 'space') {
-        url = `https://newsapi.org/v2/everything?q=space OR NASA OR ISS OR SpaceX&pageSize=10&language=en&sortBy=publishedAt&apiKey=${apiKey}`;
+        url = `/news-api/everything?q=space OR NASA OR ISS OR SpaceX&pageSize=10&language=en&sortBy=publishedAt&apiKey=${apiKey}`;
       } else {
-        url = `https://newsapi.org/v2/top-headlines?category=${category}&pageSize=10&language=en&apiKey=${apiKey}`;
+        url = `/news-api/top-headlines?category=${category}&pageSize=10&language=en&apiKey=${apiKey}`;
       }
 
       const res = await axios.get(url);

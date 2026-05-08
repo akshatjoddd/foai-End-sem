@@ -16,6 +16,12 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/hf-api/, '')
+      },
+      '/news-api': {
+        target: 'https://newsapi.org/v2',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/news-api/, '')
       }
     }
   }
