@@ -21,13 +21,18 @@ export function useISS() {
     try {
       if (isManual) setLoading(true);
       setError(null);
-      const res = await axios.get('https://api.wheretheiss.at/v1/satellites/25544');
-      const { latitude, longitude, velocity, timestamp } = res.data;
+      const res = await axios.get('https://api.allorigins.win/raw?url=http://api.open-notify.org/iss-now.json');
+      const { latitude, longitude } = res.data.iss_position;
+      const timestamp = res.data.timestamp;
       const timeLabel = new Date(timestamp * 1000).toLocaleTimeString();
 
       const newPos = { latitude: parseFloat(latitude), longitude: parseFloat(longitude), timestamp, timeLabel };
 
-      const currentSpeed = parseFloat(velocity);
+      let currentSpeed = 27600;
+      if (prevPosRef.current) {
+        const timeDiff = timestamp - prevPosRef.current.timestamp;
+        currentSpeed = calculateSpeed(prevPosRef.current, newPos, timeDiff);
+      }
       setSpeed(currentSpeed);
 
       setSpeedHistory(prev => {
