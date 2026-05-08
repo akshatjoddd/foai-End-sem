@@ -21,7 +21,7 @@ export function useISS() {
     try {
       if (isManual) setLoading(true);
       setError(null);
-      const res = await axios.get('https://api.allorigins.win/raw?url=http://api.open-notify.org/iss-now.json');
+      const res = await axios.get('/open-notify/iss-now.json');
       const { latitude, longitude } = res.data.iss_position;
       const timestamp = res.data.timestamp;
       const timeLabel = new Date(timestamp * 1000).toLocaleTimeString();
@@ -79,7 +79,7 @@ export function useISS() {
   const fetchPeople = async () => {
     try {
       setPeopleLoading(true);
-      const res = await axios.get('https://api.allorigins.win/raw?url=http://api.open-notify.org/astros.json');
+      const res = await axios.get('/open-notify/astros.json');
       setPeople(res.data.people || []);
     } catch (err) {
       console.error(err);
