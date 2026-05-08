@@ -1,0 +1,8 @@
+# Proxy for Open-Notify API to bypass mixed content / CORS issues
+/open-notify/*  http://api.open-notify.org/:splat  200
+
+# Proxy for Hugging Face Inference API
+/hf-api/*       https://router.huggingface.co/:splat  200
+
+# Fallback for Single Page Application routing (React Router etc.)
+/*              /index.html  200
